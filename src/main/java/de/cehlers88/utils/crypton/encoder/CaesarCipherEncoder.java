@@ -1,17 +1,24 @@
 package de.cehlers88.utils.crypton.encoder;
 
 public class CaesarCipherEncoder {
-    private char[] characters = new String("aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpPqQrRsStTuUvVwWxXyYzZ0123456789!@#$%^&*()-_=+[]{}|;:,.<>?/`~").toCharArray();
+    private char[] characters = new String("aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpPqQrRsStTuUvVwWxXyYzZ 0123456789@!#$%^&*()-_=+[]{}|;:,.<>?/`~'").toCharArray();
     private int[] shifts = new int[1];
 
     private char _shiftCharacter(char originalCharacter, int shift){
+        boolean originalCharacterFound = false;
         int characterIndex=0;
         for(int i=0;i<this.characters.length;i++){
             if (originalCharacter == this.characters[i]) {
                 characterIndex = i;
+                originalCharacterFound = true;
                 break;
             }
         }
+
+        if (!originalCharacterFound){ // return original character if not found in characters
+            return originalCharacter;
+        }
+
         characterIndex = characterIndex + shift;
 
         while(characterIndex>this.characters.length-1){

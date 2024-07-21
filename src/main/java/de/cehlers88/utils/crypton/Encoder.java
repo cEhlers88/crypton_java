@@ -8,6 +8,6 @@ public class Encoder {
         return Encoder.cryptonEncoder.encrypt(originalText);
     }
     public static String decrypt(String encryptedText){
-        return Encoder.decrypt(encryptedText);
+        return Encoder.cryptonEncoder.decrypt(encryptedText);
     }
 }
